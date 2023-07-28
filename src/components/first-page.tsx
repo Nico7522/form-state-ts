@@ -2,12 +2,23 @@ import { allform } from "../utils/question";
 import style from "./style.module.css";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Quiz } from "../utils/type";
-import { useAppDispatch } from "../store/hooks";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { addQuiz } from "../store/slice/quiz.slice";
+import { useEffect } from "react";
 
 export default function FirstPage() {
-  const { register, handleSubmit } = useForm<Quiz>();
+  const { register, handleSubmit, setValue } = useForm<Quiz>();
   const dispatch = useAppDispatch();
+  const responses = useAppSelector(state => state.quiz.quizResponse)
+useEffect(() => {
+  if (responses.firstQuiz) {
+    for (const key in responses.firstQuiz) {
+      let i = key as keyof Quiz
+     setValue(i, responses.firstQuiz[key] )
+    }
+
+  }
+})
 
   const handleResponse: SubmitHandler<Quiz> = (data: Quiz) => {
     const quizId = "firstQuiz";
