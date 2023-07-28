@@ -30,6 +30,21 @@ h1 {
   line-height: 1.1;
 }
 
+button {
+  width: 25%;
+  margin-top: 15px;
+  padding: 10px;
+  background: #000;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  z-index: 1;
+}
 
 button:hover {
   border-color: #646cff;
