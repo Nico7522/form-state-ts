@@ -9,12 +9,11 @@
   /* border: solid 1px; */
 
   /* border-color: rgb(110, 27, 27); */
-
 }
 
 .button-container {
   display: flex;
-margin-top: 5px;
+  margin-top: 5px;
 }
 
 .button-container > button {
@@ -26,12 +25,16 @@ margin-top: 5px;
 
 /* The element to apply the animation to */
 .divContainer {
-    width: 50%;
-    height: 550px;
-    border: 1px solid #ccc;
-    border-radius: 25px;
-    position: relative;
-    overflow: hidden;
+  width: 50%;
+  background-color: #1a1a1a;
+  padding-bottom: 25px;
+  border-radius: 25px;
+  position: relative;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
 }
 
 .divContainer2 {
@@ -44,22 +47,19 @@ margin-top: 5px;
 }
 
 @keyframes slideAndDisappear {
-    0% {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    100% {
-      opacity: 0;
-      transform: translateX(-100%);
-    }
+  0% {
+    opacity: 1;
+    transform: translateX(0);
   }
-  
- 
-  .slide-out {
-    animation: slideAndDisappear 1s ease-out;
+  100% {
+    opacity: 0;
+    transform: translateX(-100%);
   }
+}
 
-
+.slide-out {
+  animation: slideAndDisappear 1s ease-out;
+}
 
 .div {
   width: 100%;
@@ -116,7 +116,3 @@ margin-top: 5px;
     clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
   }
 }
-
-
-
-

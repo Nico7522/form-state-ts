@@ -47,7 +47,7 @@ export default function Form() {
       {currentPage === "page2" && (
         <div
           className={
-            style["divContainer2"] + " " + (onMove ? style["move"] : "")
+            style["divContainer2"] + " " + (onMove ? style["slide-out"] : "")
           }
         >
           <SecondPage />
