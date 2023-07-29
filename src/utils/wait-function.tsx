@@ -1,8 +1,9 @@
 import { Dispatch, SetStateAction } from "react";
 
-export const wait = async (
+export const pageSwitcher = async (
   time: number,
   currentPage: string,
+  sign: string,
   setLoading: Dispatch<SetStateAction<string>>,
   setCurrentPage: Dispatch<SetStateAction<string>>,
   setOnMove: Dispatch<SetStateAction<boolean>>
@@ -10,15 +11,15 @@ export const wait = async (
   return new Promise<void>((resolve) => {
     setTimeout(() => {
       setLoading("loaded");
-      if (currentPage === "page10") {
-        return;
-      } else {
-        const current = currentPage.slice(-1);
-        const previousPage = "page" + (Number(current) + 1);
-        setCurrentPage(previousPage);
-        setOnMove(false);
-        resolve()
-      }
+
+      const current = currentPage.slice(-1);
+      const newPage =
+        sign === "+"
+          ? "page" + (Number(current) + 1)
+          : "page" + (Number(current) - 1);
+      setCurrentPage(newPage);
+      setOnMove(false);
+      resolve();
     }, time);
   });
 };

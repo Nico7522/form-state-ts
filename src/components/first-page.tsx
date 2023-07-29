@@ -18,8 +18,6 @@ export default function FirstPage() {
       }
     }
   });
-console.log(errors.question1?.type);
-
   const handleResponse: SubmitHandler<Quiz> = (data: Quiz) => {
     const quizId = "firstQuiz";
     const quizData = data;

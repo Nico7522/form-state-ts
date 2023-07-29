@@ -11,8 +11,10 @@ export type Quiz = {
   question10: string;
 };
 
-export type QuizResponse = {
+export type QuizData = {
   quizResponse: any;
+  canSwitch: boolean
+
 };
 
 export type QuizStore = {

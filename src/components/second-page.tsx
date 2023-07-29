@@ -16,7 +16,8 @@ export default function SecondPage() {
   };
   return (
     <div className={style["form1"]}>
-    <h2>Page 2</h2>
+    <h2>Partie 2 : <br />
+        question sur la partie Grand Line</h2>
     <form onSubmit={handleSubmit(handleResponse)} className={style["form"]}>
       {allform.firstQuiz.map((q) => {
         return (

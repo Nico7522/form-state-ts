@@ -4,11 +4,15 @@ import SecondPage from "../components/second-page";
 import style from "./style.module.css";
 import "../App.css";
 import ThirdPage from "../components/third-page";
-import { wait } from "../utils/wait-function";
+import { pageSwitcher } from "../utils/wait-function";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { canSwitch } from "../store/slice/quiz.slice";
 export default function Form() {
   const [currentPage, setCurrentPage] = useState<string>("page1");
   const [onMove, setOnMove] = useState<boolean>(false);
   const [loading, setLoading] = useState<string>("");
+  const changePage = useAppSelector(state => state.quiz.canSwitch);
+  const dispatch = useAppDispatch();
   const moveDiv = () => {
     return new Promise<void>((resolve) => {
       setLoading("loading");
@@ -17,21 +21,22 @@ export default function Form() {
     });
   };
 
-  const previousPage = () => {
+  const previousPage = async () => {
+    dispatch(canSwitch(true))
     if (currentPage === "page1") {
       return;
     } 
-      const current = currentPage.slice(-1);
-      const previousPage = "page" + (Number(current) - 1);
-      setCurrentPage(previousPage);
+    await moveDiv();
+    await pageSwitcher(500, currentPage, '-', setLoading, setCurrentPage, setOnMove)
     
   };
   const nextPage = async () => {
+    dispatch(canSwitch(false))
     if (currentPage === "page10") {
         return;
     }
     await moveDiv();
-    await wait(500, currentPage, setLoading, setCurrentPage, setOnMove )
+    await pageSwitcher(500, currentPage, '+', setLoading, setCurrentPage, setOnMove)
   };
   return (
     <div className={style["total-container"]}>
@@ -64,8 +69,8 @@ export default function Form() {
       )}
       {loading === "loading" && <div className={style["loader"]}></div>}
       <div className={style["button-container"]}>
-        <button onClick={() => previousPage()}>Page précédante</button>
-        <button onClick={() => nextPage()}>Page suivante</button>
+        <button disabled={currentPage === "page1"} onClick={() => previousPage()}>Page précédante</button>
+        <button disabled={currentPage === "page10"  || !changePage} onClick={() => nextPage()}>Page suivante</button>
       </div>
     </div>
   );

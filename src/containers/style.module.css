@@ -39,11 +39,15 @@
 
 .divContainer2 {
   width: 50%;
-  height: 550px;
-  border: 1px solid #ccc;
+  background-color: #1a1a1a;
+  padding-bottom: 25px;
   border-radius: 25px;
   position: relative;
-  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
 }
 
 @keyframes slideAndDisappear {
