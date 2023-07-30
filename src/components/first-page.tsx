@@ -14,7 +14,20 @@ export default function FirstPage() {
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm<Quiz>();
+  } = useForm<Quiz>({
+    defaultValues: {
+      question1: "",
+      question2: "",
+      question3: "",
+      question4: "",
+      question5: "",
+      question6: "",
+      question7: "",
+      question8: "",
+      question9: "",
+      question10: "",
+    }
+  });
   const dispatch = useAppDispatch();
   const responses = useAppSelector((state) => state.quiz.quizResponse);
   useEffect(() => {
@@ -26,6 +39,8 @@ export default function FirstPage() {
     }
   });
   const handleResponse: SubmitHandler<Quiz> = (data: Quiz) => {
+    console.log(data);
+    
     const quizId = "firstQuiz";
     const quizData = data;
     dispatch(addQuiz({ quizId, quizData }));
@@ -38,7 +53,7 @@ export default function FirstPage() {
       </h2>
       <form onSubmit={handleSubmit(handleResponse)} className={style["form"]}>
         {allform.firstQuiz.map((q) => {
-          return <QuestionDisplay htmlFor={q.htmlFor} errors={errors} text={q.text} register={register} />;
+          return <QuestionDisplay htmlFor={q.htmlFor} errors={errors} text={q.text} register={register} option1={q.option1} option2={q.option2} option3={q.option3} />;
         })}
         <Button text={"envoyer"} condition={responses.firstQuiz} />
       </form>

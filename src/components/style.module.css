@@ -29,6 +29,7 @@ form {
 .input-div {
     width: 70%;
     margin: auto;
+    margin-top: 5px;
     display: flex;
     flex-direction: column;
 }
@@ -54,10 +55,17 @@ form {
 }
 
 .error {
-    color: red;
+    border: 1px solid red;
+    border-radius: 10px;
     font-style: italics;
 }
+.error-display {
+    font-style: italics;
+color: red;
+}
 
-.input-div > .input-error {
-    border: red solid 1px;
+select {
+    width: 20%;
+    margin: auto;
+    text-align: center;
 }

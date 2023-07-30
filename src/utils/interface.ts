@@ -10,4 +10,7 @@ export interface AllForm {
 export interface FormQuestion {
     htmlFor: keyof Quiz;
     text: string;
+    option1: string;
+    option2: string;
+    option3: string;
   }

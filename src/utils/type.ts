@@ -1,4 +1,4 @@
-import { FieldError, FieldErrors, UseFormRegister, UseFormSetError } from "react-hook-form";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
 
 export type Quiz = {
   question1: string;
@@ -15,24 +15,43 @@ export type Quiz = {
 
 export type QuizData = {
   quizResponse: any;
-  canSwitch: boolean
-
+  canSwitch: boolean;
 };
 
 export type QuizStore = {
-  quizId: string 
-  quizData: Quiz
-}
-
+  quizId: string;
+  quizData: Quiz;
+};
 
 export type PropsButton = {
-  text: string
-  condition: boolean
-}
+  text: string;
+  condition: boolean;
+};
 
 export type PropsQuestionDisplay = {
-  htmlFor: keyof Quiz
-  errors: FieldErrors<Quiz>
+  htmlFor: keyof Quiz;
+  errors: FieldErrors<Quiz>;
   text: string;
-  register: UseFormRegister<Quiz>
+  register: UseFormRegister<Quiz>;
+  option1: string;
+  option2: string;
+  option3: string;
+};
+
+export type QuizResponses = {
+  response1: string;
+  response2: string;
+  response3: string;
+  response4: string;
+  response5: string;
+  response6: string;
+  response7: string;
+  response8: string;
+  response9: string;
+  response10: string;
+};
+
+export type AllResponses = {
+  firstQuiz: QuizResponses
+  secondQuiz: QuizResponses
 }
