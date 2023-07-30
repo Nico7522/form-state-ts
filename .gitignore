@@ -23,5 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
-
-./src/utils/question.ts
+# Réponses et questions
+src/utils/question.ts
+src/utils/responses.ts

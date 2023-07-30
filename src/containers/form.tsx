@@ -7,6 +7,7 @@ import ThirdPage from "../components/third-page";
 import { pageSwitcher } from "../utils/wait-function";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { canSwitch } from "../store/slice/quiz.slice";
+import ResponsePage from "../components/response-page";
 export default function Form() {
   const [currentPage, setCurrentPage] = useState<string>("page1");
   const [onMove, setOnMove] = useState<boolean>(false);
@@ -33,9 +34,18 @@ export default function Form() {
   const nextPage = async () => {
     dispatch(canSwitch(false))
     if (currentPage === "page10") {
+      console.log("first");
+      
         return;
     }
-    await moveDiv();
+    if (currentPage === "page2") {
+      
+      await moveDiv();
+      setCurrentPage('responses')
+      return;
+    }
+    console.log("second");
+    await moveDiv()
     await pageSwitcher(500, currentPage, '+', setLoading, setCurrentPage, setOnMove)
   };
   return (
@@ -58,19 +68,19 @@ export default function Form() {
           <SecondPage />
         </div>
       )}
-      {currentPage === "page3" && (
+      {currentPage === "responses" && (
         <div
           className={
             style["divContainer3"] + " " + (onMove ? style["move"] : "")
           }
         >
-          <ThirdPage />
+          <ResponsePage />
         </div>
       )}
       {loading === "loading" && <div className={style["loader"]}></div>}
       <div className={style["button-container"]}>
         <button disabled={currentPage === "page1"} onClick={() => previousPage()}>Page précédante</button>
-        <button disabled={currentPage === "page10"  || !changePage} onClick={() => nextPage()}>Page suivante</button>
+        {currentPage !== "responses" && <button disabled={currentPage === "page10"  || !changePage} onClick={() => nextPage()}>Page suivante</button>}
       </div>
     </div>
   );

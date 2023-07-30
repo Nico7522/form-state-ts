@@ -5,9 +5,16 @@ import { Quiz } from "../utils/type";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { addQuiz } from "../store/slice/quiz.slice";
 import { useEffect } from "react";
+import Button from "./buttons/button";
+import QuestionDisplay from "./questions/question-display";
 
 export default function FirstPage() {
-  const { register, handleSubmit, setValue, formState: { errors } } = useForm<Quiz>();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<Quiz>();
   const dispatch = useAppDispatch();
   const responses = useAppSelector((state) => state.quiz.quizResponse);
   useEffect(() => {
@@ -31,18 +38,9 @@ export default function FirstPage() {
       </h2>
       <form onSubmit={handleSubmit(handleResponse)} className={style["form"]}>
         {allform.firstQuiz.map((q) => {
-          return (
-            <div className={style["input-div"]} key={q.htmlFor}>
-              {" "}
-              <label htmlFor={q.htmlFor}>{q.text}</label>
-              <input className={errors[q.htmlFor] ? style['input-error']: " "} {...register(q.htmlFor, { required: {value: true, message: "Champ requis !"} })} type="text" />
-             {errors[q.htmlFor] && <p className={style['error']}>{errors[q.htmlFor]?.message}</p> }
-            </div>
-          );
+          return <QuestionDisplay htmlFor={q.htmlFor} errors={errors} text={q.text} register={register} />;
         })}
-        <button className={style["btn"]} type="submit">
-          Envoyer
-        </button>
+        <Button text={"envoyer"} condition={responses.firstQuiz} />
       </form>
     </div>
   );
