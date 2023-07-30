@@ -53,7 +53,7 @@ export default function FirstPage() {
       </h2>
       <form onSubmit={handleSubmit(handleResponse)} className={style["form"]}>
         {allform.firstQuiz.map((q) => {
-          return <QuestionDisplay htmlFor={q.htmlFor} errors={errors} text={q.text} register={register} option1={q.option1} option2={q.option2} option3={q.option3} />;
+          return <QuestionDisplay key={q.htmlFor} htmlFor={q.htmlFor} errors={errors} text={q.text} register={register} option1={q.option1} option2={q.option2} option3={q.option3} />;
         })}
         <Button text={"envoyer"} condition={responses.firstQuiz} />
       </form>

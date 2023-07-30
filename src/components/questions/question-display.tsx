@@ -3,7 +3,7 @@ import style from '../style.module.css'
 
 export default function QuestionDisplay({htmlFor, errors, text, register, option1, option2, option3}: PropsQuestionDisplay) {
   return (
-    <div className={style["input-div"] + " " + (errors[htmlFor] ? style['error'] : "")} key={htmlFor}>
+    <div  className={style["input-div"] + " " + (errors[htmlFor] ? style['error'] : "")} key={htmlFor}>
     {" "}
      <label htmlFor={htmlFor}>{text}</label>
     {/* <input className={errors[htmlFor] ? style['input-error']: " "} {...register(htmlFor, { required: {value: true, message: "Champ requis !"} })} type="text" /> */} 

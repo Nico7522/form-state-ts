@@ -9,17 +9,24 @@ export const pageSwitcher = async (
   setOnMove: Dispatch<SetStateAction<boolean>>
 ): Promise<void> => {
   return new Promise<void>((resolve) => {
+   
+    
     setTimeout(() => {
       setLoading("loaded");
-
-      const current = currentPage.slice(-1);
-      const newPage =
-        sign === "+"
-          ? "page" + (Number(current) + 1)
-          : "page" + (Number(current) - 1);
-      setCurrentPage(newPage);
-      setOnMove(false);
-      resolve();
+      if (currentPage === "responses") {
+        setCurrentPage("page2");
+        setOnMove(false);
+        resolve();
+      } else {
+        const current = currentPage.slice(-1);
+        const newPage =
+          sign === "+"
+            ? "page" + (Number(current) + 1)
+            : "page" + (Number(current) - 1);
+        setCurrentPage(newPage);
+        setOnMove(false);
+        resolve();
+      }
     }, time);
   });
 };

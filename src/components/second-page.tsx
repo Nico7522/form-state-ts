@@ -6,11 +6,20 @@ import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { addQuiz } from "../store/slice/quiz.slice";
 import Button from "./buttons/button";
 import QuestionDisplay from "./questions/question-display";
+import { useEffect } from "react";
 
 export default function SecondPage() {
-  const { register, handleSubmit, formState: { errors } } = useForm<Quiz>();
+  const { register, handleSubmit, formState: { errors }, setValue } = useForm<Quiz>();
   const dispatch = useAppDispatch();
   const responses = useAppSelector(state => state.quiz.quizResponse)
+  useEffect(() => {
+    if (responses.secondQuiz) {
+      for (const key in responses.secondQuiz) {
+        let i = key as keyof Quiz;
+        setValue(i, responses.secondQuiz[key]);
+      }
+    }
+  });
   const handleResponse: SubmitHandler<Quiz> = (data: Quiz) => {
     const quizId = "secondQuiz";
     const quizData = data
@@ -23,7 +32,7 @@ export default function SecondPage() {
     <form onSubmit={handleSubmit(handleResponse)} className={style["form"]}>
       {allform.secondQuiz.map((q) => {
         return (
-          <QuestionDisplay htmlFor={q.htmlFor} errors={errors} text={q.text} register={register} option1={q.option1} option2={q.option2} option3={q.option3}  />
+          <QuestionDisplay key={q.htmlFor} htmlFor={q.htmlFor} errors={errors} text={q.text} register={register} option1={q.option1} option2={q.option2} option3={q.option3}  />
         );
       })}
       <Button text={"envoyer"} condition={responses.secondQuiz} />

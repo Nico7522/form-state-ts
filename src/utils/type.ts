@@ -16,6 +16,7 @@ export type Quiz = {
 export type QuizData = {
   quizResponse: any;
   canSwitch: boolean;
+  numberOfQuizFinish: number
 };
 
 export type QuizStore = {
